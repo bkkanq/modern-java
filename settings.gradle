@@ -1,2 +1,3 @@
 rootProject.name = 'modern-java-in-action'
+include 'observer'
 
