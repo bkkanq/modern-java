@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import excercise.TransactionFactory;
 import excercise.model.Trader;
@@ -93,7 +94,17 @@ public class TransactionService {
         // 전체 트랜잭션 중 최솟값은 얼마?
 //        return transactions.stream().map(Transaction::getValue).reduce(10000000, Integer::min);
         Optional<Transaction> min = transactions.stream()
-                                            .reduce((t1, t2) -> t1.getValue() < t2.getValue() ? t1 : t2);
+                                                .reduce((t1, t2) -> t1.getValue() < t2.getValue() ? t1 : t2);
         return min.get().getValue();
+    }
+
+    public List<double[]> fib() {
+        // (a, b, c) 일때, a^a + b^b = c^c 를 만족하는 수열 찾기
+        return IntStream.rangeClosed(1, 100)
+                        .boxed()
+                        .flatMap(a -> IntStream.rangeClosed(a, 100)
+                                               .mapToObj(b -> new double[] { a, b, Math.sqrt(a * a + b * b) })
+                                               .filter(target -> target[2] % 1 == 0))
+                        .collect(Collectors.toList());
     }
 }

@@ -68,4 +68,9 @@ public class TransactionServiceTest {
         int min = transactionService.exercise8();
         System.out.println("Min : " + min);
     }
+
+    @Test
+    public void fibTest() {
+        transactionService.fib().stream().forEach(e -> System.out.println("(" + e[0] + ", " + e[1] + ", " + e[2] + ")"));
+    }
 }
